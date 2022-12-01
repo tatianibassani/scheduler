@@ -107,9 +107,21 @@ storiesOf("Button", module)
             interviewer={3}
           />
         ))
+        
         .add("Clickable", () => (
+          <InterviewerListItem
+            name={interviewer.name}
+            avatar={interviewer.avatar}
+            setInterviewer={() => action("setInterviewer")(interviewer.id)}
+          />
+        ));
+        
+        
+        
+        
+        /*.add("Clickable", () => (
           <InterviewerList
             interviewers={interviewers}
             setInterviewer={action("setCurrentInterviewerID")}
           />
-        ));
+        ));*/
