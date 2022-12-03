@@ -33,5 +33,31 @@ export function getInterview(state, interview){
     }
   }
   return response;
+}
 
+export function getInterviewersForDay(state, day) {
+  // const appointmentsForDay = getAppointmentsForDay(state, day);
+
+  // let interviewers = [];
+  // for (let appt of appointmentsForDay) {
+  //   if (appt.interview !== null) {
+  //     const interviewerId = appt.interview.interviewer;
+  //     if (!interviewers.includes(state.interviewers[interviewerId])) {
+  //       interviewers.push(state.interviewers[interviewerId]);
+  //     }
+  //   }
+  // }
+  // return interviewers;
+  let result = [];
+
+  const dayFromState = state.days.filter(d => d.name === day);
+  if (dayFromState[0]) {
+    const interviewersIdForDay = dayFromState[0].interviewers;
+
+    for (let interviewerId of interviewersIdForDay) {
+      result.push(state.interviewers[interviewerId]);
+    }
+  }
+
+  return result;
 }

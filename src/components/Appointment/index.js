@@ -31,7 +31,7 @@ export default function Appointment (props) {
         <Form
           student={''}
           interviewer={{}}
-          interviewers={[]}
+          interviewers={props.interviewers}
           onClick={() => console.log('onClick')}
           onCancel={() => transition(EMPTY)}
         />
