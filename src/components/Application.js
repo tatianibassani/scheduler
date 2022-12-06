@@ -20,44 +20,29 @@ export default function Application(props) {
 
   const interviewers = getInterviewersForDay(state, state.day);
 
-  // const bookInterview = (id, interview) => {
+  function bookInterview(id, interview) {
+    axios.put(`/api/appointments/${id}`, {interview})
+      .then(() => {
+        const appointment = {
+          ...state.appointments[id],
+          interview: { ...interview }
+        };
+        const appointments = {
+          ...state.appointments,
+          [id]: appointment
+        };
+        setState({
+          ...state,
+          appointments
+        });
+      });
+  }
 
-  //     const newAppointment={...state.appointments [id], interview:interview};
-  //      const newApp={...state.appointments, [id]:newAppointment};
-  //      const newState={...state,appointments:newApp};
-  //     const spots = getAppointmentsForDay(newState);
-  //      const newNewState= updateSpots;
-  
-  //      setState(newNewState)
-  
-  //      console.log(id, interview);
-  // }
-  function bookInterview(id, time, interview) {
-    // const newAppointment = {
-    //   id,
-    //   time,
-    //   interview
-    // };
-    // const newState = {
-    //   ...state,
-    //   appointments: {
-    //     ...appointments,
-    //     [id]: newAppointment,
-    //   }
-    // };
-    const appointment = {
-      ...state.appointments[id],
-      interview: { ...interview }
-    };
-    const appointments = {
-      ...state.appointments,
-      [id]: appointment
-    };
-    console.log(appointments);
-    setState({
-      ...state,
-      appointments
-    });
+  function deleteInterview(id) {
+    axios.delete(`/api/appointments/${id}`)
+    .then(() => {
+      console.log('Deleting...');
+    })
   }
 
   const schedule = Object.values(appointments).map((appointment) => {
@@ -71,34 +56,10 @@ export default function Application(props) {
         interview={interview}
         interviewers={interviewers}
         bookInterview={bookInterview}
+        deleteInterview={deleteInterview}
       />
     );
   });
-
-  // const bookInterview = (id, interview) => {
-
-  //   const newAppointment={...state.appointments [id], interview:interview};
-  //   const newApp={...state.appointments, [id]:newAppointment};
-  //   const newState={...state,appointments:newApp};
-  //   const spots = getAppointmentsForDay(newState);
-  //   const newNewState= updateSpots;
-
-  //   setState(newNewState)
-
-  //   console.log(id, interview);
-
-  //   function save(name, interviewer) {
-  //     const interview = {...bookInterview}
-  //       student: name,
-  //       interviewer
-  //     }
-  //   };
-  
-  
-
-  
-
-  //const dailyAppointments = getAppointmentsForDay(state, state.day);
 
   useEffect(() => {
     Promise.all([
