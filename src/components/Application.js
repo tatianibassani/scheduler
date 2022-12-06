@@ -33,26 +33,34 @@ export default function Application(props) {
   //      console.log(id, interview);
   // }
   function bookInterview(id, time, interview) {
-    const newAppointment = {
-      [id]: {
-        id,
-        time,
-        interview
-      }
+    // const newAppointment = {
+    //   id,
+    //   time,
+    //   interview
+    // };
+    // const newState = {
+    //   ...state,
+    //   appointments: {
+    //     ...appointments,
+    //     [id]: newAppointment,
+    //   }
+    // };
+    const appointment = {
+      ...state.appointments[id],
+      interview: { ...interview }
     };
-    const newState = {
+    const appointments = {
+      ...state.appointments,
+      [id]: appointment
+    };
+    console.log(appointments);
+    setState({
       ...state,
-      appointments: {
-        ...appointments,
-        [id]: newAppointment,
-      }
-    };
-    console.log(newState);
-    setState(newState);
+      appointments
+    });
   }
-  
 
-  const schedule = appointments.map((appointment) => {
+  const schedule = Object.values(appointments).map((appointment) => {
     const interview = getInterview(state, appointment.interview);
 
     return (
