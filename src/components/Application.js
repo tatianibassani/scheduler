@@ -20,6 +20,38 @@ export default function Application(props) {
 
   const interviewers = getInterviewersForDay(state, state.day);
 
+  // const bookInterview = (id, interview) => {
+
+  //     const newAppointment={...state.appointments [id], interview:interview};
+  //      const newApp={...state.appointments, [id]:newAppointment};
+  //      const newState={...state,appointments:newApp};
+  //     const spots = getAppointmentsForDay(newState);
+  //      const newNewState= updateSpots;
+  
+  //      setState(newNewState)
+  
+  //      console.log(id, interview);
+  // }
+  function bookInterview(id, time, interview) {
+    const newAppointment = {
+      [id]: {
+        id,
+        time,
+        interview
+      }
+    };
+    const newState = {
+      ...state,
+      appointments: {
+        ...appointments,
+        [id]: newAppointment,
+      }
+    };
+    console.log(newState);
+    setState(newState);
+  }
+  
+
   const schedule = appointments.map((appointment) => {
     const interview = getInterview(state, appointment.interview);
 
@@ -30,9 +62,34 @@ export default function Application(props) {
         time={appointment.time}
         interview={interview}
         interviewers={interviewers}
+        bookInterview={bookInterview}
       />
     );
   });
+
+  // const bookInterview = (id, interview) => {
+
+  //   const newAppointment={...state.appointments [id], interview:interview};
+  //   const newApp={...state.appointments, [id]:newAppointment};
+  //   const newState={...state,appointments:newApp};
+  //   const spots = getAppointmentsForDay(newState);
+  //   const newNewState= updateSpots;
+
+  //   setState(newNewState)
+
+  //   console.log(id, interview);
+
+  //   function save(name, interviewer) {
+  //     const interview = {...bookInterview}
+  //       student: name,
+  //       interviewer
+  //     }
+  //   };
+  
+  
+
+  
+
   //const dailyAppointments = getAppointmentsForDay(state, state.day);
 
   useEffect(() => {
@@ -81,4 +138,4 @@ export default function Application(props) {
 
     
   );
-}
+        }

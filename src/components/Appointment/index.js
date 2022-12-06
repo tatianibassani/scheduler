@@ -16,6 +16,15 @@ export default function Appointment (props) {
     props.interview ? SHOW : EMPTY
   );
 
+  function save(name, interviewer) {
+    const interview = {
+      student: name,
+      interviewer
+    };
+    props.bookInterview(props.id, props.time, interview);
+  }
+
+
   return (
     <article className="appointment">
       <Header time={props.time} />
@@ -32,7 +41,7 @@ export default function Appointment (props) {
           student={''}
           interviewer={{}}
           interviewers={props.interviewers}
-          onClick={() => console.log('onClick')}
+          onClick={save}
           onCancel={() => transition(EMPTY)}
         />
       )}
