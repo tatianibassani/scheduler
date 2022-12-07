@@ -14,7 +14,7 @@ export function getAppointmentsForDay(state, day) {
     }
   }
 
-  return appointmentsForDay;
+  return Object.values(appointmentsForDay);
 }
 
 export function getInterview(state, interview){
