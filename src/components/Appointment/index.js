@@ -30,10 +30,10 @@ export default function Appointment (props) {
     };
 
     transition(SAVING);
-    props.bookInterview(props.id, interview);
-    setTimeout( () => {
-      transition(SHOW);
-    }, 1300);
+    props.bookInterview(props.id, interview)
+      .then(() => {
+        transition(SHOW);
+      });
   }
 
   function deleteConfirm() {
@@ -41,11 +41,12 @@ export default function Appointment (props) {
   }
 
   function deleteInterview() {
-    props.deleteInterview(props.id);
-    setTimeout( () => {
-      transition(EMPTY);
-    }, 1300);
     transition(DELETING);
+    props.deleteInterview(props.id)
+      .then(() => {
+        transition(EMPTY);
+      }
+    );
   }
 
   function editInterview() {
