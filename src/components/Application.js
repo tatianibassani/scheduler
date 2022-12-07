@@ -35,6 +35,20 @@ export default function Application(props) {
           ...state,
           appointments
         });
+      // })
+      // .catch(() => {
+      //   const appointment = {
+      //     ...state.appointments[id],
+      //     interview: null
+      //   };
+      //   const appointments = {
+      //     ...state.appointments,
+      //     [id]: appointment
+      //   };
+      //   setState({
+      //     ...state,
+      //     appointments
+      //   });
       });
   }
 
