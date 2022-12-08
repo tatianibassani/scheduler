@@ -64,9 +64,16 @@ export default function useApplicationData() {
         ...state.appointments,
         [id]: appointment
       };
+      const days = state.days.map(day => {
+        if (day.name === state.day) {
+          return {...day, spots: day.spots + 1}
+        }
+        return day;
+      });
+      
       setState({
         ...state,
-        spots: state.spots + 1,
+        days,
         appointments
       });
     })
