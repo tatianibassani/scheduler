@@ -27,7 +27,6 @@ export default function useApplicationData() {
   const setDay = day => setState({ ...state, day });
 
   function bookInterview(id, interview) {
-    console.log(state);
     return axios.put(`/api/appointments/${id}`, {interview})
       .then(() => {
         const appointment = {
