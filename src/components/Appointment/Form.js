@@ -27,7 +27,8 @@ export default function Form(props) {
       return;
     }
 
-    if (interviewer === null) {
+    console.log(interviewer);
+    if (JSON.stringify(interviewer) === '{}') {
       setError("Please select an interviewer");
       return;
     }

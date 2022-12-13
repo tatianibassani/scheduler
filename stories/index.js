@@ -67,13 +67,13 @@ storiesOf("Button", module)
       backgrounds: [{ name: "dark", value: "#222f3e", default: true }],
     })
     .add("Monday", () => (
-      <DayList days={days} value={"Monday"} onChange={action("setDay")} />
+      <DayList days={days} day={"Monday"} onChange={action("setDay")} />
     ))
     .add("Tuesday", () => (
-      <DayList days={days} value={"Tuesday"} onChange={action("setDay")} />
+      <DayList days={days} day={"Tuesday"} onChange={action("setDay")} />
     ))
     .add("Wednesday", () => (
-        <DayList days={days} value={"Wednesday"} onChange={action("setDay")} />
+        <DayList days={days} day={"Wednesday"} onChange={action("setDay")} />
     ));
 
     const interviewer = {
@@ -137,7 +137,7 @@ storiesOf("Button", module)
         .add("Clickable", () => (
           <InterviewerList
             interviewers={interviewers}
-            onChange={action("setInterviewer")}
+            setInterviewer={action("setInterviewer")}
           />
         ));
         
@@ -160,8 +160,8 @@ storiesOf("Button", module)
         .add("Status", () => <Status message="Deleting" />)
         .add("Error", () => <Error message="Could not delete appointment."      
                                    onClose={action("onClose")}/>)
-        .add("Edit", () => <Form student="Tatiana" interviewer="1" interviewers={interviewers} onClick={action("onSave")}/>)
-        .add("Create", () => <Form interviewer="1" interviewers={interviewers} onClick={action("onSave")}/>)
+        .add("Edit", () => <Form student="Tatiana" interviewer="1" interviewers={interviewers} onSave={action("onSave")}/>)
+        .add("Create", () => <Form interviewer="1" interviewers={interviewers} onSave={action("onSave")}/>)
 
         .add("Appointment Empty", () => (
           <Fragment>
