@@ -18,6 +18,9 @@ Install dependencies with `npm install`.
 
 ## Running Webpack Development Server
 
+The Scheduler project is dependent of the backend scheduler-api in order to work correctly. You can find it here: https://github.com/lighthouse-labs/scheduler-api 
+
+Run this command for both scheduler and scheduler-api
 ```sh
 npm start
 ```
