@@ -22,7 +22,7 @@ export default function Form(props) {
       return;
     }
 
-    if (JSON.stringify(interviewer) === '{}') {
+    if (JSON.stringify(interviewer) === '{}' || interviewer === null) {
       setError("Please select an interviewer");
       return;
     }
