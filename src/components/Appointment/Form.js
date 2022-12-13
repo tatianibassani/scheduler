@@ -16,18 +16,12 @@ export default function Form(props) {
     setInterviewer(interviewer);
   }
 
-  const reset = () => {
-    setStudent("");
-    setInterviewer(null);
-  }
-
   function validate() {
     if (student === "") {
       setError("Student name cannot be blank");
       return;
     }
 
-    console.log(interviewer);
     if (JSON.stringify(interviewer) === '{}') {
       setError("Please select an interviewer");
       return;
