@@ -25,7 +25,19 @@ export default function Appointment (props) {
     props.interview ? SHOW : EMPTY
   );
 
-  function save(name, interviewer) {
+  function createInterview(name, interviewer) {
+    const interview = {
+      student: name,
+      interviewer
+    };
+
+    transition(SAVING);
+    props.bookInterview(props.id, interview)
+         .then(() => transition(SHOW))
+         .catch(error => transition(ERROR_SAVE, true));
+  }
+
+  function editInterview(name, interviewer) {
     const interview = {
       student: name,
       interviewer
@@ -33,7 +45,7 @@ export default function Appointment (props) {
     };
 
     transition(SAVING);
-    props.bookInterview(props.id, interview, )
+    props.editInterview(props.id, interview)
          .then(() => transition(SHOW))
          .catch(error => transition(ERROR_SAVE, true));
   }
@@ -49,7 +61,7 @@ export default function Appointment (props) {
          .catch(error => transition(ERROR_DELETING, true));
   }
 
-  function editInterview() {
+  function transitionToEdit() {
     transition(EDIT);
   };
 
@@ -71,7 +83,7 @@ export default function Appointment (props) {
           student={props.interview.student}
           interviewer={props.interview.interviewer.name}
           onDelete={deleteConfirm}
-          onEdit={editInterview}
+          onEdit={transitionToEdit}
         />
       )}
       {mode === CREATE && (
@@ -79,7 +91,7 @@ export default function Appointment (props) {
           student={''}
           interviewer={{}}
           interviewers={props.interviewers}
-          onSave={save}
+          onSave={createInterview}
           onCancel={() => transition(EMPTY)}
         />
       )}
@@ -93,7 +105,7 @@ export default function Appointment (props) {
           student={props.interview.student}
           interviewer={props.interview.interviewer.id}
           interviewers={props.interviewers}
-          onSave={save}
+          onSave={editInterview}
           onCancel={() => transition(SHOW)}
         />
       )}
